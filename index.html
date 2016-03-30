@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
+<script>
+    var map;
+function initialize() {
+  var mapProp = {
+    center:new google.maps.LatLng(40, -100),
+    zoom:4,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+}
+function usedata(){
+    // https://maps.googleapis.com/maps/api/geocode/json?address=Wisconsin&key=AIzaSyDe4SaXvAk1QEuJ5-7vPuuYK1HtfxjHKBI
+    var api_key = "AIzaSyDe4SaXvAk1QEuJ5-7vPuuYK1HtfxjHKBI";
+    var addr = "https://maps.googleapis.com/maps/api/geocode/json?address=" + document.getElementById('state').value + "&key=" + api_key;
+    $.ajax({
+           url: addr,
+           type:"GET",success: function(result){
+           var lat = result.results[0].geometry.location.lat;
+           var lng = result.results[0].geometry.location.lng;
+           //console.log(lat);
+           //console.log(lng);
+           map.setCenter(new google.maps.LatLng(lat, lng));
+           map.setZoom(6);
+           }});
+           
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+
+<body>
+<div id="googleMap" style="width:500px;height:380px;"></div>
+
+<br />
+<br />
+<br />
+Enter in your state here: <input type="text" id="state" value=""></input>
+<br />
+What is your income? <input type="text" id="state" value=""></input>
+
+<br />
+Check all of the following which matter to you:
+<br />
+<br />
+<input type="checkbox" value=""> Schooling </input>
+<br />
+<input type="checkbox" value=""> Crime </input>
+<br />
+<input type="checkbox" value=""> Taxes </input>
+<br />
+<button type="submit" name="submit" id="submit" onclick="usedata()">Submit</button>
+</body>
+</html>
+
