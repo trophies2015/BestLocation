@@ -4,7 +4,6 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js">
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-
 <script>
     var map;
 function initialize() {
@@ -15,10 +14,520 @@ function initialize() {
   };
   map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
 }
+var crimedata = [{"CITY":"ABILENE","STATE":"TX","HOMICIDES":2},
+                 {"CITY":"AKRON","STATE":"OH","HOMICIDES":null},
+                 {"CITY":"ALBANY","STATE":"NY","HOMICIDES":7},
+                 {"CITY":"ALBUQUERQUE","STATE":"NM","HOMICIDES":49},
+                 {"CITY":"ALEXANDRIA","STATE":"VA","HOMICIDES":5},
+                 {"CITY":"ALLENTOWN","STATE":"PA","HOMICIDES":7},
+                 {"CITY":"AMARILLO","STATE":"TX","HOMICIDES":14},
+                 {"CITY":"AMHERST TOWN","STATE":"NY","HOMICIDES":0},
+                 {"CITY":"ANAHEIM","STATE":"CA","HOMICIDES":15},
+                 {"CITY":"ANCHORAGE","STATE":"AK","HOMICIDES":23},
+                 {"CITY":"ANN ARBOR","STATE":"MI","HOMICIDES":0},
+                 {"CITY":"ARLINGTON","STATE":"TX","HOMICIDES":12},
+                 {"CITY":"ARVADA","STATE":"CO","HOMICIDES":null},
+                 {"CITY":"ATLANTA","STATE":"GA","HOMICIDES":150},
+                 {"CITY":"AURORA","STATE":"CO","HOMICIDES":17},
+                 {"CITY":"AURORA","STATE":"IL","HOMICIDES":20},
+                 {"CITY":"AUSTIN","STATE":"TX","HOMICIDES":40},
+                 {"CITY":"BAKERSFIELD","STATE":"CA","HOMICIDES":22},
+                 {"CITY":"BALTIMORE","STATE":"MD","HOMICIDES":312},
+                 {"CITY":"BATON ROUGE","STATE":"LA","HOMICIDES":58},
+                 {"CITY":"BEAUMONT","STATE":"TX","HOMICIDES":11},
+                 {"CITY":"BERKELEY","STATE":"CA","HOMICIDES":11},
+                 {"CITY":"BIRMINGHAM","STATE":"AL","HOMICIDES":108},
+                 {"CITY":"BOISE","STATE":"ID","HOMICIDES":4},
+                 {"CITY":"BOSTON","STATE":"MA","HOMICIDES":43},
+                 {"CITY":"BRIDGEPORT","STATE":"CT","HOMICIDES":34},
+                 {"CITY":"BROWNSVILLE","STATE":"TX","HOMICIDES":8},
+                 {"CITY":"BUFFALO","STATE":"NY","HOMICIDES":46},
+                 {"CITY":"BURBANK","STATE":"CA","HOMICIDES":0},
+                 {"CITY":"CAMBRIDGE","STATE":"MA","HOMICIDES":2},
+                 {"CITY":"CEDAR RAPIDS","STATE":"IA","HOMICIDES":null},
+                 {"CITY":"CHANDLER","STATE":"AZ","HOMICIDES":3},
+                 {"CITY":"CHARLOTTE-MECKLENBURG PD","STATE":"NC","HOMICIDES":59},
+                 {"CITY":"CHATTANOOGA","STATE":"TN","HOMICIDES":36},
+                 {"CITY":"CHESAPEAKE","STATE":"VA","HOMICIDES":11},
+                 {"CITY":"CHICAGO","STATE":"IL","HOMICIDES":757},
+                 {"CITY":"CHULA VISTA","STATE":"CA","HOMICIDES":8},
+                 {"CITY":"CINCINNATI","STATE":"OH","HOMICIDES":null},
+                 {"CITY":"Clearwater Police Depart","STATE":"FL","HOMICIDES":2},
+                 {"CITY":"CLEVELAND","STATE":"OH","HOMICIDES":77},
+                 {"CITY":"COLORADO SPRINGS","STATE":"CO","HOMICIDES":24},
+                 {"CITY":"COLUMBIA","STATE":"SC","HOMICIDES":12},
+                 {"CITY":"COLUMBUS","STATE":"OH","HOMICIDES":84},
+                 {"CITY":"COLUMBUS","STATE":"GA","HOMICIDES":14},
+                 {"CITY":"CONCORD","STATE":"CA","HOMICIDES":0},
+                 {"CITY":"CORPUS CHRISTI","STATE":"TX","HOMICIDES":18},
+                 {"CITY":"COSTA MESA","STATE":"CA","HOMICIDES":3},
+                 {"CITY":"DALLAS","STATE":"TX","HOMICIDES":209},
+                 {"CITY":"DAYTON","STATE":"OH","HOMICIDES":34},
+                 {"CITY":"DENVER","STATE":"CO","HOMICIDES":69},
+                 {"CITY":"DES MOINES","STATE":"IA","HOMICIDES":11},
+                 {"CITY":"DETROIT","STATE":"MI","HOMICIDES":469},
+                 {"CITY":"DOWNEY","STATE":"CA","HOMICIDES":7},
+                 {"CITY":"DURHAM","STATE":"NC","HOMICIDES":33},
+                 {"CITY":"EL MONTE","STATE":"CA","HOMICIDES":7},
+                 {"CITY":"EL PASO","STATE":"TX","HOMICIDES":24},
+                 {"CITY":"ELIZABETH","STATE":"NJ","HOMICIDES":7},
+                 {"CITY":"ERIE","STATE":"PA","HOMICIDES":4},
+                 {"CITY":"ESCONDIDO","STATE":"CA","HOMICIDES":6},
+                 {"CITY":"EUGENE","STATE":"OR","HOMICIDES":2},
+                 {"CITY":"EVANSVILLE","STATE":"IN","HOMICIDES":7},
+                 {"CITY":"FLINT","STATE":"MI","HOMICIDES":19},
+                 {"CITY":"FONTANA","STATE":"CA","HOMICIDES":12},
+                 {"CITY":"FORT COLLINS","STATE":"CO","HOMICIDES":1},
+                 {"CITY":"Fort Lauderdale Police D","STATE":"FL","HOMICIDES":16},
+                 {"CITY":"FORT WAYNE","STATE":"IN","HOMICIDES":36},
+                 {"CITY":"FORT WORTH","STATE":"TX","HOMICIDES":74},
+                 {"CITY":"FREMONT","STATE":"CA","HOMICIDES":4},
+                 {"CITY":"FRESNO","STATE":"CA","HOMICIDES":60},
+                 {"CITY":"FULLERTON","STATE":"CA","HOMICIDES":2},
+                 {"CITY":"GARDEN GROVE","STATE":"CA","HOMICIDES":3},
+                 {"CITY":"GARLAND","STATE":"TX","HOMICIDES":4},
+                 {"CITY":"GARY","STATE":"IN","HOMICIDES":98},
+                 {"CITY":"GLENDALE","STATE":"CA","HOMICIDES":6},
+                 {"CITY":"GLENDALE","STATE":"AZ","HOMICIDES":13},
+                 {"CITY":"GRAND PRAIRIE","STATE":"TX","HOMICIDES":9},
+                 {"CITY":"GRAND RAPIDS","STATE":"MI","HOMICIDES":25},
+                 {"CITY":"GREEN BAY","STATE":"WI","HOMICIDES":6},
+                 {"CITY":"GREENSBORO","STATE":"NC","HOMICIDES":35},
+                 {"CITY":"HAMPTON","STATE":"VA","HOMICIDES":6},
+                 {"CITY":"HARTFORD","STATE":"CT","HOMICIDES":21},
+                 {"CITY":"HAYWARD","STATE":"CA","HOMICIDES":7},
+                 {"CITY":"HENDERSON","STATE":"NV","HOMICIDES":2},
+                 {"CITY":"Hialeah Police Departmen","STATE":"FL","HOMICIDES":12},
+                 {"CITY":"Hollywood Police Departm","STATE":"FL","HOMICIDES":9},
+                 {"CITY":"HONOLULU","STATE":"HI","HOMICIDES":34},
+                 {"CITY":"HOUSTON","STATE":"TX","HOMICIDES":254},
+                 {"CITY":"HUNTINGTON BEACH","STATE":"CA","HOMICIDES":5},
+                 {"CITY":"HUNTSVILLE","STATE":"AL","HOMICIDES":16},
+                 {"CITY":"INDEPENDENCE","STATE":"MO","HOMICIDES":6},
+                 {"CITY":"INDIANAPOLIS","STATE":"IN","HOMICIDES":118},
+                 {"CITY":"INGLEWOOD","STATE":"CA","HOMICIDES":25},
+                 {"CITY":"IRVINE","STATE":"CA","HOMICIDES":1},
+                 {"CITY":"IRVING","STATE":"TX","HOMICIDES":6},
+                 {"CITY":"JACKSON","STATE":"MS","HOMICIDES":61},
+                 {"CITY":"JACKSONVILLE","STATE":"FL","HOMICIDES":75},
+                 {"CITY":"JERSEY CITY","STATE":"NJ","HOMICIDES":26},
+                 {"CITY":"KANSAS CITY","STATE":"MO","HOMICIDES":100},
+                 {"CITY":"KNOXVILLE","STATE":"TN","HOMICIDES":19},
+                 {"CITY":"LAFAYETTE","STATE":"LA","HOMICIDES":15},
+                 {"CITY":"LAKEWOOD","STATE":"CO","HOMICIDES":2},
+                 {"CITY":"LANCASTER","STATE":"CA","HOMICIDES":7},
+                 {"CITY":"LANSING","STATE":"MI","HOMICIDES":16},
+                 {"CITY":"LAREDO","STATE":"TX","HOMICIDES":11},
+                 {"CITY":"LAS VEGAS METRO POL JUR","STATE":"NV","HOMICIDES":null},
+                 {"CITY":"LEXINGTON","STATE":"KY","HOMICIDES":24},
+                 {"CITY":"LINCOLN","STATE":"NB","HOMICIDES":7},
+                 {"CITY":"LITTLE ROCK","STATE":"AR","HOMICIDES":34},
+                 {"CITY":"LIVONIA","STATE":"MI","HOMICIDES":0},
+                 {"CITY":"LONG BEACH","STATE":"CA","HOMICIDES":56},
+                 {"CITY":"LOS ANGELES","STATE":"CA","HOMICIDES":576},
+                 {"CITY":"LOUISVILLE","STATE":"KY","HOMICIDES":62},
+                 {"CITY":"LUBBOCK","STATE":"TX","HOMICIDES":6},
+                 {"CITY":"MACON","STATE":"GA","HOMICIDES":23},
+                 {"CITY":"MADISON","STATE":"WI","HOMICIDES":3},
+                 {"CITY":"MCALLEN","STATE":"TX","HOMICIDES":4},
+                 {"CITY":"MEMPHIS","STATE":"TN","HOMICIDES":138},
+                 {"CITY":"MESA","STATE":"AZ","HOMICIDES":13},
+                 {"CITY":"MESQUITE","STATE":"TX","HOMICIDES":4},
+                 {"CITY":"Miami Police Department","STATE":"FL","HOMICIDES":98},
+                 {"CITY":"MIDLAND","STATE":"TX","HOMICIDES":5},
+                 {"CITY":"MILWAUKEE","STATE":"WI","HOMICIDES":122},
+                 {"CITY":"MINNEAPOLIS","STATE":"MN","HOMICIDES":58},
+                 {"CITY":"MOBILE","STATE":"AL","HOMICIDES":52},
+                 {"CITY":"MODESTO","STATE":"CA","HOMICIDES":17},
+                 {"CITY":"MONTGOMERY","STATE":"AL","HOMICIDES":26},
+                 {"CITY":"MORENO VALLEY","STATE":"CA","HOMICIDES":14},
+                 {"CITY":"NAPERVILLE","STATE":"IL","HOMICIDES":0},
+                 {"CITY":"NASHVILLE","STATE":"TN","HOMICIDES":112},
+                 {"CITY":"NEW HAVEN","STATE":"CT","HOMICIDES":21},
+                 {"CITY":"NEW ORLEANS","STATE":"LA","HOMICIDES":267},
+                 {"CITY":"NEW YORK","STATE":"NY","HOMICIDES":770},
+                 {"CITY":"NEWARK","STATE":"NJ","HOMICIDES":57},
+                 {"CITY":"NEWPORT NEWS","STATE":"VA","HOMICIDES":17},
+                 {"CITY":"NORFOLK","STATE":"VA","HOMICIDES":55},
+                 {"CITY":"NORWALK","STATE":"CA","HOMICIDES":8},
+                 {"CITY":"OAKLAND","STATE":"CA","HOMICIDES":99},
+                 {"CITY":"OCEANSIDE","STATE":"CA","HOMICIDES":9},
+                 {"CITY":"ODESSA","STATE":"TX","HOMICIDES":5},
+                 {"CITY":"OKLAHOMA CITY","STATE":"OK","HOMICIDES":59},
+                 {"CITY":"OMAHA","STATE":"NB","HOMICIDES":31},
+                 {"CITY":"ONTARIO","STATE":"CA","HOMICIDES":13},
+                 {"CITY":"ORANGE","STATE":"CA","HOMICIDES":12},
+                 {"CITY":"Orlando Police Departmen","STATE":"FL","HOMICIDES":14},
+                 {"CITY":"OXNARD","STATE":"CA","HOMICIDES":5},
+                 {"CITY":"PALMDALE","STATE":"CA","HOMICIDES":6},
+                 {"CITY":"PASADENA","STATE":"CA","HOMICIDES":12},
+                 {"CITY":"PASADENA","STATE":"TX","HOMICIDES":9},
+                 {"CITY":"PATERSON","STATE":"NJ","HOMICIDES":14},
+                 {"CITY":"PEORIA","STATE":"IL","HOMICIDES":9},
+                 {"CITY":"PHILADELPHIA","STATE":"PA","HOMICIDES":418},
+                 {"CITY":"PHOENIX","STATE":"AZ","HOMICIDES":175},
+                 {"CITY":"PITTSBURGH","STATE":"PA","HOMICIDES":50},
+                 {"CITY":"PLANO","STATE":"TX","HOMICIDES":1},
+                 {"CITY":"POMONA","STATE":"CA","HOMICIDES":34},
+                 {"CITY":"PORTLAND","STATE":"OR","HOMICIDES":46},
+                 {"CITY":"PORTSMOUTH","STATE":"VA","HOMICIDES":21},
+                 {"CITY":"PROVIDENCE","STATE":"RI","HOMICIDES":12},
+                 {"CITY":"PUEBLO","STATE":"CO","HOMICIDES":6},
+                 {"CITY":"RALEIGH","STATE":"NC","HOMICIDES":23},
+                 {"CITY":"RANCHO CUCAMONGA","STATE":"CA","HOMICIDES":4},
+                 {"CITY":"RENO","STATE":"NV","HOMICIDES":13},
+                 {"CITY":"RICHMOND","STATE":"VA","HOMICIDES":139},
+                 {"CITY":"RIVERSIDE","STATE":"CA","HOMICIDES":23},
+                 {"CITY":"ROCHESTER","STATE":"NY","HOMICIDES":53},
+                 {"CITY":"ROCKFORD","STATE":"IL","HOMICIDES":14},
+                 {"CITY":"SACRAMENTO","STATE":"CA","HOMICIDES":41},
+                 {"CITY":"SAINT LOUIS","STATE":"MO","HOMICIDES":153},
+                 {"CITY":"SAINT PAUL","STATE":"MN","HOMICIDES":24},
+                 {"CITY":"SALEM","STATE":"OR","HOMICIDES":1},
+                 {"CITY":"SALINAS","STATE":"CA","HOMICIDES":18},
+                 {"CITY":"SALT LAKE CITY","STATE":"UT","HOMICIDES":21},
+                 {"CITY":"SAN ANTONIO","STATE":"TX","HOMICIDES":95},
+                 {"CITY":"SAN BERNARDINO","STATE":"CA","HOMICIDES":36},
+                 {"CITY":"SAN DIEGO","STATE":"CA","HOMICIDES":67},
+                 {"CITY":"SAN FRANCISCO","STATE":"CA","HOMICIDES":59},
+                 {"CITY":"SAN JOSE","STATE":"CA","HOMICIDES":43},
+                 {"CITY":"SANTA ANA","STATE":"CA","HOMICIDES":27},
+                 {"CITY":"SANTA CLARITA","STATE":"CA","HOMICIDES":2},
+                 {"CITY":"SANTA ROSA","STATE":"CA","HOMICIDES":10},
+                 {"CITY":"SAVANNAH","STATE":"GA","HOMICIDES":27},
+                 {"CITY":"SCOTTSDALE","STATE":"AZ","HOMICIDES":null},
+                 {"CITY":"SEATTLE","STATE":"WA","HOMICIDES":49},
+                 {"CITY":"SHREVEPORT","STATE":"LA","HOMICIDES":42},
+                 {"CITY":"SIMI VALLEY","STATE":"CA","HOMICIDES":5},
+                 {"CITY":"SIOUX FALLS","STATE":"SD","HOMICIDES":1},
+                 {"CITY":"SOUTH BEND","STATE":"IN","HOMICIDES":17},
+                 {"CITY":"SPOKANE","STATE":"WA","HOMICIDES":11},
+                 {"CITY":"SPRINGFIELD","STATE":"IL","HOMICIDES":12},
+                 {"CITY":"SPRINGFIELD","STATE":"MA","HOMICIDES":9},
+                 {"CITY":"SPRINGFIELD","STATE":"MO","HOMICIDES":7},
+                 {"CITY":"STAMFORD","STATE":"CT","HOMICIDES":1},
+                 {"CITY":"STERLING HEIGHTS","STATE":"MI","HOMICIDES":2},
+                 {"CITY":"STOCKTON","STATE":"CA","HOMICIDES":45},
+                 {"CITY":"St. Petersburg Police De","STATE":"FL","HOMICIDES":21},
+                 {"CITY":"SUNNYVALE","STATE":"CA","HOMICIDES":0},
+                 {"CITY":"SYRACUSE","STATE":"NY","HOMICIDES":15},
+                 {"CITY":"TACOMA","STATE":"WA","HOMICIDES":21},
+                 {"CITY":"Tallahassee Police Depar","STATE":"FL","HOMICIDES":5},
+                 {"CITY":"Tampa Police Department","STATE":"FL","HOMICIDES":35},
+                 {"CITY":"TEMPE","STATE":"AZ","HOMICIDES":12},
+                 {"CITY":"THOUSAND OAKS","STATE":"CA","HOMICIDES":1},
+                 {"CITY":"TOLEDO","STATE":"OH","HOMICIDES":25},
+                 {"CITY":"TOPEKA","STATE":"KS","HOMICIDES":8},
+                 {"CITY":"TORRANCE","STATE":"CA","HOMICIDES":2},
+                 {"CITY":"TUCSON","STATE":"AZ","HOMICIDES":50},
+                 {"CITY":"TULSA","STATE":"OK","HOMICIDES":40},
+                 {"CITY":"VALLEJO","STATE":"CA","HOMICIDES":3},
+                 {"CITY":"VIRGINIA BEACH","STATE":"VA","HOMICIDES":19},
+                 {"CITY":"WACO","STATE":"TX","HOMICIDES":15},
+                 {"CITY":"WARREN","STATE":"MI","HOMICIDES":null},
+                 {"CITY":"WASHINGTON","STATE":"DC","HOMICIDES":301},
+                 {"CITY":"WATERBURY","STATE":"CT","HOMICIDES":8},
+                 {"CITY":"WEST COVINA","STATE":"CA","HOMICIDES":8},
+                 {"CITY":"WEST VALLEY","STATE":"UT","HOMICIDES":9},
+                 {"CITY":"WICHITA","STATE":"KS","HOMICIDES":32},
+                 {"CITY":"WICHITA FALLS","STATE":"TX","HOMICIDES":1},
+                 {"CITY":"WINSTON-SALEM","STATE":"NC","HOMICIDES":13},
+                 {"CITY":"WORCESTER","STATE":"MA","HOMICIDES":5},
+                 {"CITY":"YONKERS","STATE":"NY","HOMICIDES":16}];
+                 var states = [
+                               {
+                               "name": "Alabama",
+                               "abbreviation": "AL"
+                               },
+                               {
+                               "name": "Alaska",
+                               "abbreviation": "AK"
+                               },
+                               {
+                               "name": "American Samoa",
+                               "abbreviation": "AS"
+                               },
+                               {
+                               "name": "Arizona",
+                               "abbreviation": "AZ"
+                               },
+                               {
+                               "name": "Arkansas",
+                               "abbreviation": "AR"
+                               },
+                               {
+                               "name": "California",
+                               "abbreviation": "CA"
+                               },
+                               {
+                               "name": "Colorado",
+                               "abbreviation": "CO"
+                               },
+                               {
+                               "name": "Connecticut",
+                               "abbreviation": "CT"
+                               },
+                               {
+                               "name": "Delaware",
+                               "abbreviation": "DE"
+                               },
+                               {
+                               "name": "District Of Columbia",
+                               "abbreviation": "DC"
+                               },
+                               {
+                               "name": "Federated States Of Micronesia",
+                               "abbreviation": "FM"
+                               },
+                               {
+                               "name": "Florida",
+                               "abbreviation": "FL"
+                               },
+                               {
+                               "name": "Georgia",
+                               "abbreviation": "GA"
+                               },
+                               {
+                               "name": "Guam",
+                               "abbreviation": "GU"
+                               },
+                               {
+                               "name": "Hawaii",
+                               "abbreviation": "HI"
+                               },
+                               {
+                               "name": "Idaho",
+                               "abbreviation": "ID"
+                               },
+                               {
+                               "name": "Illinois",
+                               "abbreviation": "IL"
+                               },
+                               {
+                               "name": "Indiana",
+                               "abbreviation": "IN"
+                               },
+                               {
+                               "name": "Iowa",
+                               "abbreviation": "IA"
+                               },
+                               {
+                               "name": "Kansas",
+                               "abbreviation": "KS"
+                               },
+                               {
+                               "name": "Kentucky",
+                               "abbreviation": "KY"
+                               },
+                               {
+                               "name": "Louisiana",
+                               "abbreviation": "LA"
+                               },
+                               {
+                               "name": "Maine",
+                               "abbreviation": "ME"
+                               },
+                               {
+                               "name": "Marshall Islands",
+                               "abbreviation": "MH"
+                               },
+                               {
+                               "name": "Maryland",
+                               "abbreviation": "MD"
+                               },
+                               {
+                               "name": "Massachusetts",
+                               "abbreviation": "MA"
+                               },
+                               {
+                               "name": "Michigan",
+                               "abbreviation": "MI"
+                               },
+                               {
+                               "name": "Minnesota",
+                               "abbreviation": "MN"
+                               },
+                               {
+                               "name": "Mississippi",
+                               "abbreviation": "MS"
+                               },
+                               {
+                               "name": "Missouri",
+                               "abbreviation": "MO"
+                               },
+                               {
+                               "name": "Montana",
+                               "abbreviation": "MT"
+                               },
+                               {
+                               "name": "Nebraska",
+                               "abbreviation": "NE"
+                               },
+                               {
+                               "name": "Nevada",
+                               "abbreviation": "NV"
+                               },
+                               {
+                               "name": "New Hampshire",
+                               "abbreviation": "NH"
+                               },
+                               {
+                               "name": "New Jersey",
+                               "abbreviation": "NJ"
+                               },
+                               {
+                               "name": "New Mexico",
+                               "abbreviation": "NM"
+                               },
+                               {
+                               "name": "New York",
+                               "abbreviation": "NY"
+                               },
+                               {
+                               "name": "North Carolina",
+                               "abbreviation": "NC"
+                               },
+                               {
+                               "name": "North Dakota",
+                               "abbreviation": "ND"
+                               },
+                               {
+                               "name": "Northern Mariana Islands",
+                               "abbreviation": "MP"
+                               },
+                               {
+                               "name": "Ohio",
+                               "abbreviation": "OH"
+                               },
+                               {
+                               "name": "Oklahoma",
+                               "abbreviation": "OK"
+                               },
+                               {
+                               "name": "Oregon",
+                               "abbreviation": "OR"
+                               },
+                               {
+                               "name": "Palau",
+                               "abbreviation": "PW"
+                               },
+                               {
+                               "name": "Pennsylvania",
+                               "abbreviation": "PA"
+                               },
+                               {
+                               "name": "Puerto Rico",
+                               "abbreviation": "PR"
+                               },
+                               {
+                               "name": "Rhode Island",
+                               "abbreviation": "RI"
+                               },
+                               {
+                               "name": "South Carolina",
+                               "abbreviation": "SC"
+                               },
+                               {
+                               "name": "South Dakota",
+                               "abbreviation": "SD"
+                               },
+                               {
+                               "name": "Tennessee",
+                               "abbreviation": "TN"
+                               },
+                               {
+                               "name": "Texas",
+                               "abbreviation": "TX"
+                               },
+                               {
+                               "name": "Utah",
+                               "abbreviation": "UT"
+                               },
+                               {
+                               "name": "Vermont",
+                               "abbreviation": "VT"
+                               },
+                               {
+                               "name": "Virgin Islands",
+                               "abbreviation": "VI"
+                               },
+                               {
+                               "name": "Virginia",
+                               "abbreviation": "VA"
+                               },
+                               {
+                               "name": "Washington",
+                               "abbreviation": "WA"
+                               },
+                               {
+                               "name": "West Virginia",
+                               "abbreviation": "WV"
+                               },
+                               {
+                               "name": "Wisconsin",
+                               "abbreviation": "WI"
+                               },
+                               {
+                               "name": "Wyoming",
+                               "abbreviation": "WY"
+                               }
+                               ];
+var gradrate=[{"State":"Alabama ","GradRate":86.3},
+                                             {"State":"Alaska ","GradRate":71.1},
+                                             {"State":"Arizona ","GradRate":75.7},
+                                             {"State":"Arkansas ","GradRate":86.9},
+                                             {"State":"California ","GradRate":81},
+                                             {"State":"Colorado ","GradRate":77.3},
+                                             {"State":"Connecticut ","GradRate":87},
+                                             {"State":"Delaware ","GradRate":87},
+                                             {"State":"District of Columbia ","GradRate":61.4},
+                                             {"State":"Florida ","GradRate":76.1},
+                                             {"State":"Georgia ","GradRate":72.5},
+                                             {"State":"Hawaii ","GradRate":81.8},
+                                             {"State":"Idaho2 ","GradRate":77.3},
+                                             {"State":"Illinois ","GradRate":86},
+                                             {"State":"Indiana ","GradRate":87.9},
+                                             {"State":"Iowa ","GradRate":90.5},
+                                             {"State":"Kansas ","GradRate":85.7},
+                                             {"State":"Kentucky ","GradRate":87.5},
+                                             {"State":"Louisiana ","GradRate":74.6},
+                                             {"State":"Maine ","GradRate":86.5},
+                                             {"State":"Maryland ","GradRate":86.4},
+                                             {"State":"Massachusetts ","GradRate":86.1},
+                                             {"State":"Michigan ","GradRate":78.6},
+                                             {"State":"Minnesota ","GradRate":81.2},
+                                             {"State":"Mississippi ","GradRate":77.6},
+                                             {"State":"Missouri ","GradRate":87.3},
+                                             {"State":"Montana ","GradRate":85.4},
+                                             {"State":"Nebraska ","GradRate":89.7},
+                                             {"State":"Nevada ","GradRate":70},
+                                             {"State":"New Hampshire ","GradRate":88.1},
+                                             {"State":"New Jersey ","GradRate":88.6},
+                                             {"State":"New Mexico ","GradRate":68.5},
+                                             {"State":"New York ","GradRate":77.8},
+                                             {"State":"North Carolina ","GradRate":83.9},
+                                             {"State":"North Dakota ","GradRate":87.2},
+                                             {"State":"Ohio ","GradRate":81.8},
+                                             {"State":"Oklahoma ","GradRate":82.7},
+                                             {"State":"Oregon ","GradRate":72},
+                                             {"State":"Pennsylvania ","GradRate":85.3},
+                                             {"State":"Rhode Island ","GradRate":80.8},
+                                             {"State":"South Carolina","GradRate":80.1},
+                                             {"State":"South Dakota ","GradRate":82.7},
+                                             {"State":"Tennessee ","GradRate":87.2},
+                                             {"State":"Texas ","GradRate":88.3},
+                                             {"State":"Utah ","GradRate":83.9},
+                                             {"State":"Vermont ","GradRate":87.8},
+                                             {"State":"Virginia ","GradRate":85.3},
+                                             {"State":"Washington ","GradRate":78.2},
+                                             {"State":"West Virginia ","GradRate":84.5},
+                                             {"State":"Wisconsin ","GradRate":88.6},
+                                             {"State":"Wyoming ","GradRate":78.6}]
 function usedata(){
     // https://maps.googleapis.com/maps/api/geocode/json?address=Wisconsin&key=AIzaSyDe4SaXvAk1QEuJ5-7vPuuYK1HtfxjHKBI
     var api_key = "AIzaSyDe4SaXvAk1QEuJ5-7vPuuYK1HtfxjHKBI";
     var addr = "https://maps.googleapis.com/maps/api/geocode/json?address=" + document.getElementById('state').value + "&key=" + api_key;
+    var state = document.getElementById('state').value;
     $.ajax({
            url: addr,
            type:"GET",success: function(result){
@@ -26,8 +535,53 @@ function usedata(){
            var lng = result.results[0].geometry.location.lng;
            //console.log(lat);
            //console.log(lng);
+           //console.log(result);
            map.setCenter(new google.maps.LatLng(lat, lng));
            map.setZoom(6);
+           var abb = "";
+             for (var g=0; g<states.length; g++){
+                if (states[g].name.toLowerCase() == state.toLowerCase()){
+                abb = states[g].abbreviation;
+                }
+             }
+           var tot = 0;
+           for (var g=0; g<gradrate.length; g++){
+            if (gradrate[g].State.substring(0, gradrate[g].State.length - 2).toLowerCase() == state.toLowerCase()){
+              tot = gradrate[g].GradRate;
+            }
+           }
+           console.log(document.getElementById('schooling').value)
+           tot*=parseInt(document.getElementById('schooling').value)
+           console.log(tot);
+           var mini = 1000000;
+           var ct = "";
+           for (var g=0; g<crimedata.length; g++){
+            if (crimedata[g].STATE == abb){
+              if (crimedata[g].HOMICIDES < mini){
+                mini = crimedata[g].HOMICIDES; ct = crimedata[g].CITY;
+              }
+            }
+           }
+           tot+=mini*parseInt(document.getElementById('crime').value);
+           
+           var loc = ct + ", " + state;
+           document.getElementById('notif').innerHTML = loc;
+           var addr2 = "https://maps.googleapis.com/maps/api/geocode/json?address=" + loc + "&key=" + api_key;
+           $.ajax({
+                  url:addr2,
+                  type:"GET",
+                  success:function(result){
+                  document.getElementById('anot').innerHTML = "City has been marked on the map.";
+                  console.log(result)
+                  var lat = result.results[0].geometry.location.lat;
+                  var lng = result.results[0].geometry.location.lng;
+                  var latlng = {"lat":lat, "lng":lng}
+                  var marker = new google.maps.Marker({
+                                                      position: latlng,
+                                                      map: map,
+                                                      });
+                  }
+           });
            }});
            
 }
@@ -43,19 +597,20 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <br />
 Enter in your state here: <input type="text" id="state" value=""></input>
 <br />
-What is your income? <input type="text" id="state" value=""></input>
+What is your income? <input type="text" id="income" value=""></input>
 
 <br />
-Check all of the following which matter to you:
+On a scale of 1-10 (1 being the lower, 10 being the highest), how much do you care about the following:
 <br />
 <br />
-<input type="checkbox" value=""> Schooling </input>
+Schooling: <input type="text" id="schooling" value=""> </input>
 <br />
-<input type="checkbox" value=""> Crime </input>
-<br />
-<input type="checkbox" value=""> Taxes </input>
+Crime: <input type="text" id="crime" value=""> </input>
 <br />
 <button type="submit" name="submit" id="submit" onclick="usedata()">Submit</button>
+<br />
+The best city would be: <h4 id="notif"></h4>
+<h4 id="anot"></h4>
 </body>
 </html>
 
